@@ -18,17 +18,25 @@ class SocketFlutterPlugin {
   }
 
   Future<Null> connect() async {
+      print("here connect");
     final String socket = await _channel.invokeMethod('connect');
   }
 
 
   Future<String> on(String topic, Function _handle) async {
+    print("here hhhhhhhhhhhh");
     final String socket = await _channel.invokeMethod('on', <String, dynamic>{'topic': topic});
-    _channel.setMethodCallHandler((call) {
+    _channel.setMethodCallHandler((MethodCall call) {
+     print("here call");
       if (call.method == 'received') {
-        final String received = call.arguments['message'];
-        Function.apply(_handle, [received]);
+        // print("hdjhgkjhdsgksj");
+        // print(call);
+       final String received = call.arguments["message"];
+       
+      // return received;
+   Function.apply(_handle, [received]);
       }
+      else print("m in else part here");
     });
     return socket;
   }

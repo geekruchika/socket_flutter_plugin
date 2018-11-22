@@ -18,5 +18,6 @@ A new Flutter plugin.
   s.dependency 'Socket.IO-Client-Swift'
   s.dependency 'Starscream'
   s.ios.deployment_target = '9.0'
+
 end
 

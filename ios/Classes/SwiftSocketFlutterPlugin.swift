@@ -33,7 +33,7 @@ public class SwiftSocketFlutterPlugin: NSObject, FlutterPlugin {
             print(error)
         }
     }else if call.method == "connect" {
-        if socket != nil {
+        if socket != nil { 
             socket!.connect()
         }
     }else if call.method == "emit" {

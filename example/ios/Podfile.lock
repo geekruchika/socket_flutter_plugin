@@ -1,11 +1,12 @@
 PODS:
   - Flutter (1.0.0)
-  - Socket.IO-Client-Swift (13.3.0):
+  - Socket.IO-Client-Swift (13.3.1):
     - Starscream (~> 3.0.2)
   - socket_flutter_plugin (0.0.1):
     - Flutter
     - Socket.IO-Client-Swift
-  - Starscream (3.0.5)
+    - Starscream
+  - Starscream (3.0.6)
 
 DEPENDENCIES:
   - Flutter (from `.symlinks/flutter/ios`)
@@ -25,9 +26,9 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Flutter: 9d0fac939486c9aba2809b7982dfdbb47a7b0296
-  Socket.IO-Client-Swift: 0afb192a562db90d50e3f7f7421c06925a3f0179
-  socket_flutter_plugin: 597d832773c08b07edd155726b302eed684c3384
-  Starscream: faf918b2f2eff7d5dd21180646bf015a669673bd
+  Socket.IO-Client-Swift: 79f8f85fa44881838175a20f9bd2c32bef2c9d37
+  socket_flutter_plugin: f6d368616d901a4e001e63cd341efbe49bf5d592
+  Starscream: ef3ece99d765eeccb67de105bfa143f929026cf5
 
 PODFILE CHECKSUM: 873752b5816bbd551811937dec5b787ce3db3faa
 

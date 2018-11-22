@@ -68,18 +68,19 @@ public class SocketFlutterPlugin implements MethodCallHandler {
         }
         if(jb != null){
             mSocket.emit(topic,jb);
-            result.success("sent");
+            result.success("cxcxcx");
         }
 
     } else if (call.method.equals("on")){
         String topic = call.argument("topic");
         Log.d("SocketIO  ","registering to "+ topic + " topic");
         mSocket.on(topic, onNewMessage);
-        result.success("sent");
+        // result.success("asdasdsadsad");
     }else if(call.method.equals("unsubscribe")){
         String topic = call.argument("topic");
         mSocket.off(topic);
-    }else {
+    }
+    else {
         result.notImplemented();
         Log.d("SocketIO ","Not Implemented");
     }
@@ -88,11 +89,24 @@ public class SocketFlutterPlugin implements MethodCallHandler {
   private Emitter.Listener onNewMessage = new Emitter.Listener() {
     @Override
     public void call(final Object... args) {
-        String data = (String)args[0];
+      String data = (String)args[0];
+      
         Log.d("SocketIO ", "Received " + data);
-        Map<String, String> myMap= new HashMap<String, String>();
+        Map<String, String> myMap= new HashMap<String,String>();
         myMap.put("message", data);
+        Log.d("SocketIO ", "myMap " + myMap);
         channel.invokeMethod("received", myMap);
+        // String data = (String)args[0];
+        // Log.d("SocketIO ", "Received " + data);
+        // Map<String, String> myMap= new HashMap<String, String>();
+        // myMap.put("message", data);
+        // channel.invokeMethod("received", myMap);
+      //  String data = (String)args[0];
+    //    Log.d("SocketIO ", "Received " + args[0]);
+    //    Map<String, String> myMap= new HashMap<String, String>();
+    //    myMap.put("message", "args");
+     //   channel.invokeMethod("received", args[0].toString());
+        // result.success("sent");
     }
   };
 }
