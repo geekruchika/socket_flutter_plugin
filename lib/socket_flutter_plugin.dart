@@ -25,7 +25,9 @@ class SocketFlutterPlugin {
 
   Future<String> on(String topic, Function _handle) async {
     print("here hhhhhhhhhhhh");
+    print(_channel);
     final String socket = await _channel.invokeMethod('on', <String, dynamic>{'topic': topic});
+ 
     _channel.setMethodCallHandler((MethodCall call) {
      print("here call");
       if (call.method == 'received') {

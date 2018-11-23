@@ -30,13 +30,12 @@ class _MyAppState extends State<MyApp> {
               '{"content":"test"}';
      // myIO.emit("chat",jsonData);
       myIO.on("ignition:on",(data){
-        print("i m here data");
-      }).then((v){
-        print("i m here");
+        print("data");
+         debugPrint(data.toString());
       });
-      myIO.on("ignition:off",(data){
-        print(data);
-      });
+      // myIO.on("ignition:off",(data){
+      //   print(data);
+      // });
     
   }
 
