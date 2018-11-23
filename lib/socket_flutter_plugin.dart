@@ -7,8 +7,8 @@ class SocketFlutterPlugin {
 
   MethodChannel _channel = const MethodChannel('socket_flutter_plugin');
 
-  Future<String> socket(url) async {
-    final String socket = await _channel.invokeMethod('socket',<String, dynamic>{'url': url});
+  Future<String> socket(url,[token]) async {
+    final String socket = await _channel.invokeMethod('socket',<String, dynamic>{'url': url, 'token': token});
     return socket;
   }
 
@@ -27,7 +27,7 @@ class SocketFlutterPlugin {
     print("here hhhhhhhhhhhh");
     print(_channel);
     final String socket = await _channel.invokeMethod('on', <String, dynamic>{'topic': topic});
- 
+ print(socket);
     _channel.setMethodCallHandler((MethodCall call) {
      print("here call");
       if (call.method == 'received') {

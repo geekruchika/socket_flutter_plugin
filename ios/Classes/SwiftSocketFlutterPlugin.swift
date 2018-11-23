@@ -22,9 +22,11 @@ public class SwiftSocketFlutterPlugin: NSObject, FlutterPlugin {
     //result("iOS " + UIDevice.current.systemVersion)
     if call.method == "socket" {
         do{
-            if let args = call.arguments as? [String: String],let url = args["url"] {
-                socketManager = SocketManager(socketURL: URL(string: url)!, config: [.log(true), .compress])
+            if let args = call.arguments as? [String: String],let url = args["url"], let token = args["token"] {
+                
+                socketManager = SocketManager(socketURL: URL(string: url)!, config: [.log(true), .compress, .connectParams(["token" : token])])
                 socket = socketManager!.defaultSocket
+                
                 result("created")
             }
             
@@ -33,7 +35,7 @@ public class SwiftSocketFlutterPlugin: NSObject, FlutterPlugin {
             print(error)
         }
     }else if call.method == "connect" {
-        if socket != nil { 
+        if socket != nil {
             socket!.connect()
         }
     }else if call.method == "emit" {
@@ -63,10 +65,17 @@ public class SwiftSocketFlutterPlugin: NSObject, FlutterPlugin {
     }else if call.method == "on" {
         if let args = call.arguments as? [String: String],let topic = args["topic"]{
             socket!.on(topic) {(data, ack) -> Void in
+                // var dictonary:[String:Any] = [:];
+                // print(data)
+                // dictonary["message"] = data[0];
+                // print(data[0])
+                // self.mChannel!.invokeMethod("received", arguments: dictonary)
+                // result("sent")
                 var dictonary:[String:Any] = [:];
                 print(data)
-                dictonary["message"] = data[0];
-                print(data[0])
+                
+                dictonary["message"] = "\(data[0])";
+//                print(self.mChannel)
                 self.mChannel!.invokeMethod("received", arguments: dictonary)
                 result("sent")
             }

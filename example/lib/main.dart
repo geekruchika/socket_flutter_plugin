@@ -3,6 +3,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/services.dart';
 import 'package:socket_flutter_plugin/socket_flutter_plugin.dart';
+import 'dart:io';
 
 void main() => runApp(new MyApp());
 
@@ -24,7 +25,11 @@ class _MyAppState extends State<MyApp> {
   Future<void> initPlatformState() async {
     
       SocketFlutterPlugin myIO = new SocketFlutterPlugin();
-      myIO.socket("https://stream.automatic.com?token=20a2eee3a9ceb9a11422:b95e6f30cd35b4feb8fca33b66426b58e04ab175");
+     // myIO.socket("https://stream.automatic.com?token=20a2eee3a9ceb9a11422:b95e6f30cd35b4feb8fca33b66426b58e04ab175");
+     Platform.isAndroid?myIO.socket(
+        "https://stream.automatic.com?token=20a2eee3a9ceb9a11422:b95e6f30cd35b4feb8fca33b66426b58e04ab175",""):
+    myIO.socket(
+        "https://stream.automatic.com", "20a2eee3a9ceb9a11422:b95e6f30cd35b4feb8fca33b66426b58e04ab175");
       myIO.connect();
       String jsonData =
               '{"content":"test"}';
